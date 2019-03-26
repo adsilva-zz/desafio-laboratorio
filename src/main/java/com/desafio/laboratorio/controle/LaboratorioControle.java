@@ -23,7 +23,6 @@ public class LaboratorioControle {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Laboratorio> cadastrarLaboratorio(@Valid @RequestBody LaboratorioDTO laboratorioDTO) {
-
 		return new ResponseEntity<Laboratorio>(laboratorioServico.cadastrarLaboratorio(laboratorioDTO),
 				HttpStatus.CREATED);
 	}
