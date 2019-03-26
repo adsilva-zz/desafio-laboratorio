@@ -10,7 +10,7 @@ public class LaboratorioDTO {
 	@NotEmpty
 	private String nome;
 	@NotEmpty
-	private String endereço;
+	private String endereco;
 	@NotNull
 	private Status status;
 
@@ -22,12 +22,12 @@ public class LaboratorioDTO {
 		this.nome = nome;
 	}
 
-	public String getEndereço() {
-		return endereço;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+	public void setEndereço(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public Status getStatus() {

@@ -13,10 +13,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
 @Table(name = "laboratorio")
+@JsonInclude(Include.NON_NULL)
 public class Laboratorio {
 
 	@Id
@@ -27,7 +30,7 @@ public class Laboratorio {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	@ManyToMany
-	@JoinTable( name = "laboratorio_exame", joinColumns = {
+	@JoinTable(name = "laboratorio_exame", joinColumns = {
 			@JoinColumn(name = "idLaboratorio", referencedColumnName = "idLaboratorio") }, inverseJoinColumns = {
 					@JoinColumn(name = "idExame", referencedColumnName = "idExame") })
 	@JsonManagedReference
