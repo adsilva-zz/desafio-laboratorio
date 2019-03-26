@@ -14,7 +14,6 @@ public class LaboratorioDtoToLaboratorio implements Converter<LaboratorioDTO, La
 		Laboratorio lab = new Laboratorio();
 		lab.setNome(laboratorioDTO.getNome());
 		lab.setEndereço(laboratorioDTO.getEndereco());
-		lab.setStatus(laboratorioDTO.getStatus());
 		return lab;
 	}
 

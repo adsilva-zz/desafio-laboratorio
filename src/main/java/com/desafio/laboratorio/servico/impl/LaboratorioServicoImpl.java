@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.desafio.laboratorio.dto.LaboratorioDTO;
 import com.desafio.laboratorio.entidade.Laboratorio;
+import com.desafio.laboratorio.entidade.Status;
 import com.desafio.laboratorio.repositorio.LaboratorioRepositorio;
 import com.desafio.laboratorio.servico.LaboratorioServico;
 
@@ -23,7 +24,7 @@ public class LaboratorioServicoImpl implements LaboratorioServico {
 	@Override
 	public Laboratorio cadastrarLaboratorio(LaboratorioDTO laboratorioDTO) {
 		Laboratorio laboratorio = conversionService.convert(laboratorioDTO, Laboratorio.class);
-
+		laboratorio.setStatus(Status.ATIVO);
 		return laboratorioRepositorio.save(laboratorio);
 	}
 
