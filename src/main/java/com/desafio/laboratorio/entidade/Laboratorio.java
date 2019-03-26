@@ -1,12 +1,19 @@
 package com.desafio.laboratorio.entidade;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "laboratorio")
@@ -19,6 +26,12 @@ public class Laboratorio {
 	private String endereço;
 	@Enumerated(EnumType.STRING)
 	private Status status;
+	@ManyToMany
+	@JoinTable( name = "laboratorio_exame", joinColumns = {
+			@JoinColumn(name = "idLaboratorio", referencedColumnName = "idLaboratorio") }, inverseJoinColumns = {
+					@JoinColumn(name = "idExame", referencedColumnName = "idExame") })
+	@JsonManagedReference
+	private List<Exame> listaExames;
 
 	public Long getIdLaboratorio() {
 		return idLaboratorio;
