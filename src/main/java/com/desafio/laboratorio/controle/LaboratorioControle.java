@@ -1,10 +1,13 @@
 package com.desafio.laboratorio.controle;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,5 +28,14 @@ public class LaboratorioControle {
 	public ResponseEntity<Laboratorio> cadastrarLaboratorio(@Valid @RequestBody LaboratorioDTO laboratorioDTO) {
 		return new ResponseEntity<Laboratorio>(laboratorioServico.cadastrarLaboratorio(laboratorioDTO),
 				HttpStatus.CREATED);
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Laboratorio>> listarLaboratorios() {
+		List<Laboratorio> lista = laboratorioServico.listarLaboratorio();
+		if (ObjectUtils.isEmpty(lista)) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Laboratorio>>(lista, HttpStatus.OK);
 	}
 }

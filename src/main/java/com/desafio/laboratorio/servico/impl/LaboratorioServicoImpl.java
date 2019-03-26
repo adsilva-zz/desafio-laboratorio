@@ -29,8 +29,7 @@ public class LaboratorioServicoImpl implements LaboratorioServico {
 
 	@Override
 	public List<Laboratorio> listarLaboratorio() {
-		// TODO Auto-generated method stub
-		return null;
+		return laboratorioRepositorio.findAll();
 	}
 
 	@Override
