@@ -17,7 +17,7 @@ public class ExameServicoImpl implements ExameServico {
 
 	@Autowired
 	private ExameRepositorio exameRepositorio;
-	
+
 	@Autowired
 	private ConversionService conversionService;
 
@@ -30,8 +30,7 @@ public class ExameServicoImpl implements ExameServico {
 
 	@Override
 	public List<Exame> listarExames() {
-		// TODO Auto-generated method stub
-		return null;
+		return exameRepositorio.findByStatus(Status.ATIVO);
 	}
 
 	@Override
