@@ -16,7 +16,7 @@ public interface LaboratorioServico {
 
 	public Laboratorio getLaboratorio(Long idLaboratorio);
 
-	public boolean atualizarLaboratorio(LaboratorioDTO laboratorioDTO, Long idLaboratorio);
+	public Laboratorio atualizarLaboratorio(LaboratorioDTO laboratorioDTO, Long idLaboratorio);
 
 	public boolean deletarLaboratorio(Long idLaboratorio);
 }

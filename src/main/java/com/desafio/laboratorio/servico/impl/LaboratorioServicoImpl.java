@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import com.desafio.laboratorio.dto.LaboratorioDTO;
 import com.desafio.laboratorio.entidade.Laboratorio;
@@ -41,9 +42,14 @@ public class LaboratorioServicoImpl implements LaboratorioServico {
 	}
 
 	@Override
-	public boolean atualizarLaboratorio(LaboratorioDTO laboratorioDTO, Long idLaboratorio) {
-		// TODO Auto-generated method stub
-		return false;
+	public Laboratorio atualizarLaboratorio(LaboratorioDTO laboratorioDTO, Long idLaboratorio) {
+		Laboratorio lab = getLaboratorio(idLaboratorio);
+		if (ObjectUtils.isEmpty(lab)) {
+			return null;
+		}
+		lab.setEndereço(laboratorioDTO.getEndereco());
+		lab.setNome(laboratorioDTO.getNome());
+		return laboratorioRepositorio.save(lab);
 	}
 
 	@Override
