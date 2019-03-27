@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.desafio.laboratorio.dto.AtualizarLabDTO;
 import com.desafio.laboratorio.dto.LaboratorioDTO;
 import com.desafio.laboratorio.entidade.Laboratorio;
 import com.desafio.laboratorio.servico.LaboratorioServico;
@@ -51,7 +52,7 @@ public class LaboratorioControle {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Laboratorio> atualizarLaboratorio(@PathVariable(value = "id") Long id,
-			@Valid @RequestBody LaboratorioDTO laboratorioDTO) {
+			@Valid @RequestBody AtualizarLabDTO laboratorioDTO) {
 		Laboratorio lab = laboratorioServico.atualizarLaboratorio(laboratorioDTO, id);
 		if (ObjectUtils.isEmpty(lab)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
