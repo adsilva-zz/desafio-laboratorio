@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.desafio.laboratorio.dto.AtualizarExemaDTO;
 import com.desafio.laboratorio.dto.ExameDTO;
+import com.desafio.laboratorio.dto.IdLaboratorioDTO;
 import com.desafio.laboratorio.entidade.Exame;
 import com.desafio.laboratorio.servico.ExameServico;
 
@@ -65,5 +66,12 @@ public class ExameControle {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	public ResponseEntity<Exame> associarExameComLaboratorio(@Valid @RequestBody IdLaboratorioDTO idLaboratorio,
+			@PathVariable(value = "id") Long idExame) {
+		Exame exame = exameServico.associarExameComLaboratorio(idExame, idLaboratorio);
+		return new ResponseEntity<Exame>(exame, HttpStatus.OK);
 	}
 }

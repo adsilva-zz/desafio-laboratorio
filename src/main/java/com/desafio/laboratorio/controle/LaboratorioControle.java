@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.desafio.laboratorio.dto.AtualizarLabDTO;
 import com.desafio.laboratorio.dto.LaboratorioDTO;
 import com.desafio.laboratorio.entidade.Laboratorio;
+import com.desafio.laboratorio.servico.ExameServico;
 import com.desafio.laboratorio.servico.LaboratorioServico;
 
 @RestController
@@ -26,6 +28,9 @@ public class LaboratorioControle {
 	@Autowired
 	private LaboratorioServico laboratorioServico;
 
+	@Autowired
+	private ExameServico exameServico;
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Laboratorio> cadastrarLaboratorio(@Valid @RequestBody LaboratorioDTO laboratorioDTO) {
 		return new ResponseEntity<Laboratorio>(laboratorioServico.cadastrarLaboratorio(laboratorioDTO),
@@ -33,10 +38,18 @@ public class LaboratorioControle {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Laboratorio>> listarLaboratorios() {
+	public ResponseEntity<List<Laboratorio>> listarLaboratorios(
+			@RequestParam(name = "nome", required = false) String nomeExame) {
+		if (!ObjectUtils.isEmpty(nomeExame)) {
+			List<Laboratorio> listaLaboratoriosAssociados = exameServico.listarLaboratoriosAssociados(nomeExame);
+			if (ObjectUtils.isEmpty(listaLaboratoriosAssociados)) {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<List<Laboratorio>>(listaLaboratoriosAssociados, HttpStatus.OK);
+		}
 		List<Laboratorio> lista = laboratorioServico.listarLaboratorio();
 		if (ObjectUtils.isEmpty(lista)) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<Laboratorio>>(lista, HttpStatus.OK);
 	}

@@ -57,6 +57,14 @@ public class Exame {
 		return idExame;
 	}
 
+	public List<Laboratorio> getListaLaboratorios() {
+		return listaLaboratorios;
+	}
+
+	public void setListaLaboratorios(List<Laboratorio> listaLaboratorios) {
+		this.listaLaboratorios = listaLaboratorios;
+	}
+
 	@Override
 	public String toString() {
 		return "Exame [idExame=" + idExame + ", nome=" + nome + ", tipo=" + tipo + ", status=" + status + "]";

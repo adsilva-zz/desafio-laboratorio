@@ -12,4 +12,7 @@ import com.desafio.laboratorio.entidade.Status;
 public interface ExameRepositorio extends JpaRepository<Exame, Long> {
 
 	public List<Exame> findByStatus(Status status);
+
+	public Exame findByNome(String nome);
+
 }
