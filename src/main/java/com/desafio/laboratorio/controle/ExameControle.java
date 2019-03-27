@@ -68,7 +68,7 @@ public class ExameControle {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/laboratorios", method = RequestMethod.POST)
 	public ResponseEntity<Exame> associarExameComLaboratorio(@Valid @RequestBody IdLaboratorioDTO idLaboratorio,
 			@PathVariable(value = "id") Long idExame) {
 		Exame exame = exameServico.associarExameComLaboratorio(idExame, idLaboratorio);

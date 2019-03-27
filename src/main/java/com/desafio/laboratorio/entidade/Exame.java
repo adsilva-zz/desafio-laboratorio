@@ -8,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -25,7 +27,10 @@ public class Exame {
 	private TipoExame tipo;
 	@Enumerated(EnumType.STRING)
 	private Status status;
-	@ManyToMany(mappedBy = "listaExames")
+	@ManyToMany
+	@JoinTable(name = "laboratorio_exame", joinColumns = {
+			@JoinColumn(name = "idExame", referencedColumnName = "idExame") }, inverseJoinColumns = {
+					@JoinColumn(name = "idLaboratorio", referencedColumnName = "idLaboratorio") })
 	@JsonBackReference
 	private List<Laboratorio> listaLaboratorios;
 

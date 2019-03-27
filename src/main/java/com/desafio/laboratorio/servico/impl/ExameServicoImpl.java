@@ -1,6 +1,5 @@
 package com.desafio.laboratorio.servico.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +14,8 @@ import com.desafio.laboratorio.dto.IdLaboratorioDTO;
 import com.desafio.laboratorio.entidade.Exame;
 import com.desafio.laboratorio.entidade.Laboratorio;
 import com.desafio.laboratorio.entidade.Status;
+import com.desafio.laboratorio.excecao.ExameNaoEncontradoException;
+import com.desafio.laboratorio.excecao.LaboratorioNaoEncontradoException;
 import com.desafio.laboratorio.repositorio.ExameRepositorio;
 import com.desafio.laboratorio.servico.ExameServico;
 import com.desafio.laboratorio.servico.LaboratorioServico;
@@ -78,19 +79,15 @@ public class ExameServicoImpl implements ExameServico {
 	@Override
 	public Exame associarExameComLaboratorio(Long idExame, IdLaboratorioDTO idLaboratorio) {
 		Exame exame = getExame(idExame);
-		Laboratorio lab = laboratorioServico.getLaboratorio(idLaboratorio.getIdLaboratorio());
 		if (ObjectUtils.isEmpty(exame)) {
-			// exceção de exame não existe
+			throw new ExameNaoEncontradoException(idExame);
 		}
+		Laboratorio lab = laboratorioServico.getLaboratorio(idLaboratorio.getIdLaboratorio());
 		if (ObjectUtils.isEmpty(lab)) {
-			// exceção de exame não existe
+			throw new LaboratorioNaoEncontradoException(idLaboratorio.getIdLaboratorio());
 		}
-		if (ObjectUtils.isEmpty(exame.getListaLaboratorios())) {
-			exame.setListaLaboratorios(new ArrayList<>());
-			exame.getListaLaboratorios().add(lab);
-		} else {
-			exame.getListaLaboratorios().add(lab);
-		}
+
+		exame.getListaLaboratorios().add(lab);
 		return exameRepositorio.save(exame);
 	}
 

@@ -2,6 +2,7 @@ package com.desafio.laboratorio.entidade;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -29,10 +30,7 @@ public class Laboratorio {
 	private String endereço;
 	@Enumerated(EnumType.STRING)
 	private Status status;
-	@ManyToMany
-	@JoinTable(name = "laboratorio_exame", joinColumns = {
-			@JoinColumn(name = "idLaboratorio", referencedColumnName = "idLaboratorio") }, inverseJoinColumns = {
-					@JoinColumn(name = "idExame", referencedColumnName = "idExame") })
+	@ManyToMany(mappedBy = "listaLaboratorios")
 	@JsonManagedReference
 	private List<Exame> listaExames;
 
@@ -62,6 +60,14 @@ public class Laboratorio {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public List<Exame> getListaExames() {
+		return listaExames;
+	}
+
+	public void setListaExames(List<Exame> listaExames) {
+		this.listaExames = listaExames;
 	}
 
 	@Override

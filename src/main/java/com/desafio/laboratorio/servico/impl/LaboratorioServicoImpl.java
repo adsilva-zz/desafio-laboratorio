@@ -39,7 +39,7 @@ public class LaboratorioServicoImpl implements LaboratorioServico {
 	@Override
 	public Laboratorio getLaboratorio(Long idLaboratorio) {
 		Optional<Laboratorio> lab = laboratorioRepositorio.findById(idLaboratorio);
-		return lab.get();
+		return lab.orElse(null);
 	}
 
 	@Override

@@ -40,16 +40,14 @@ public class LaboratorioControle {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Laboratorio>> listarLaboratorios(
 			@RequestParam(name = "nome", required = false) String nomeExame) {
+		List<Laboratorio> lista;
 		if (!ObjectUtils.isEmpty(nomeExame)) {
-			List<Laboratorio> listaLaboratoriosAssociados = exameServico.listarLaboratoriosAssociados(nomeExame);
-			if (ObjectUtils.isEmpty(listaLaboratoriosAssociados)) {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
-			return new ResponseEntity<List<Laboratorio>>(listaLaboratoriosAssociados, HttpStatus.OK);
+			lista = exameServico.listarLaboratoriosAssociados(nomeExame);
+		} else {
+			lista = laboratorioServico.listarLaboratorio();
 		}
-		List<Laboratorio> lista = laboratorioServico.listarLaboratorio();
 		if (ObjectUtils.isEmpty(lista)) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Laboratorio>>(lista, HttpStatus.OK);
 	}
