@@ -49,13 +49,19 @@ public class LaboratorioServicoImpl implements LaboratorioServico {
 		}
 		lab.setEndereço(laboratorioDTO.getEndereco());
 		lab.setNome(laboratorioDTO.getNome());
+
 		return laboratorioRepositorio.save(lab);
 	}
 
 	@Override
 	public boolean deletarLaboratorio(Long idLaboratorio) {
-		// TODO Auto-generated method stub
-		return false;
+		Laboratorio lab = getLaboratorio(idLaboratorio);
+		if (ObjectUtils.isEmpty(lab)) {
+			return false;
+		}
+		lab.setStatus(Status.INATIVO);
+		laboratorioRepositorio.save(lab);
+		return true;
 	}
 
 }

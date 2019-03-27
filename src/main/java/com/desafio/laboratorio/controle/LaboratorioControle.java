@@ -48,13 +48,22 @@ public class LaboratorioControle {
 		}
 		return new ResponseEntity<Laboratorio>(lab, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Laboratorio> atualizarLaboratorio(@PathVariable(value = "id") Long id, @Valid @RequestBody LaboratorioDTO laboratorioDTO){
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Laboratorio> atualizarLaboratorio(@PathVariable(value = "id") Long id,
+			@Valid @RequestBody LaboratorioDTO laboratorioDTO) {
 		Laboratorio lab = laboratorioServico.atualizarLaboratorio(laboratorioDTO, id);
 		if (ObjectUtils.isEmpty(lab)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Laboratorio>(lab, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> removerLaboratorio(@PathVariable(value = "id") Long id) {
+		if (!laboratorioServico.deletarLaboratorio(id)) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 }
