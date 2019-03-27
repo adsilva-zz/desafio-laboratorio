@@ -31,7 +31,7 @@ public class LaboratorioServicoImpl implements LaboratorioServico {
 
 	@Override
 	public List<Laboratorio> listarLaboratorio() {
-		return laboratorioRepositorio.findAll();
+		return laboratorioRepositorio.findByStatus(Status.ATIVO);
 	}
 
 	@Override
