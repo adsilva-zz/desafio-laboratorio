@@ -3,7 +3,6 @@ package com.desafio.laboratorio.dto;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.desafio.laboratorio.entidade.Status;
 import com.desafio.laboratorio.entidade.TipoExame;
 
 public class ExameDTO {
@@ -12,8 +11,6 @@ public class ExameDTO {
 	private String nome;
 	@NotNull
 	private TipoExame tipo;
-	@NotNull
-	private Status status;
 
 	public String getNome() {
 		return nome;
@@ -30,13 +27,4 @@ public class ExameDTO {
 	public void setTipo(TipoExame tipo) {
 		this.tipo = tipo;
 	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 }
