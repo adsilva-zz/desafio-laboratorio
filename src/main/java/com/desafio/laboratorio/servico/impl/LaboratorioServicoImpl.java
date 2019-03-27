@@ -1,6 +1,7 @@
 package com.desafio.laboratorio.servico.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -35,8 +36,8 @@ public class LaboratorioServicoImpl implements LaboratorioServico {
 
 	@Override
 	public Laboratorio getLaboratorio(Long idLaboratorio) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Laboratorio> lab = laboratorioRepositorio.findById(idLaboratorio);
+		return lab.get();
 	}
 
 	@Override
