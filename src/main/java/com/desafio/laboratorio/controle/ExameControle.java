@@ -74,4 +74,14 @@ public class ExameControle {
 		Exame exame = exameServico.associarExameComLaboratorio(idExame, idLaboratorio);
 		return new ResponseEntity<Exame>(exame, HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "/{id}/laboratorios", method = RequestMethod.DELETE)
+	public ResponseEntity<Exame> desassociarExameDeLaboratorio(@Valid @RequestBody IdLaboratorioDTO idLaboratorio,
+			@PathVariable(value = "id") Long idExame) {
+		Exame exame = exameServico.desassociarExameDeLaboratorio(idExame, idLaboratorio);
+		if (ObjectUtils.isEmpty(exame)) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<Exame>(exame, HttpStatus.OK);
+	}
 }

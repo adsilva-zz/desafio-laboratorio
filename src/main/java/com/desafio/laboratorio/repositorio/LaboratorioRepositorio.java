@@ -12,4 +12,6 @@ import com.desafio.laboratorio.entidade.Status;
 public interface LaboratorioRepositorio extends JpaRepository<Laboratorio, Long> {
 
 	public List<Laboratorio> findByStatus(Status status);
+	
+	public Laboratorio findByIdLaboratorioAndStatus(Long idLaboratorio, Status status);
 }

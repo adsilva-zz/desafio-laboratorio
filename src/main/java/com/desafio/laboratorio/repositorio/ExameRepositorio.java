@@ -15,4 +15,6 @@ public interface ExameRepositorio extends JpaRepository<Exame, Long> {
 
 	public Exame findByNome(String nome);
 
+	public Exame findByIdExameAndStatus(Long idExame, Status status);
+
 }

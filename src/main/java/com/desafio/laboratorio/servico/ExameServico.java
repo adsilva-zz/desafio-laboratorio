@@ -24,4 +24,5 @@ public interface ExameServico {
 
 	public List<Laboratorio> listarLaboratoriosAssociados(String nome);
 
+	public Exame desassociarExameDeLaboratorio(Long idExame, IdLaboratorioDTO idLaboratorio);
 }

@@ -50,7 +50,12 @@ public class ExameServicoImpl implements ExameServico {
 		if (ObjectUtils.isEmpty(exame)) {
 			return null;
 		}
-		return exame.get();
+		return exame.orElse(null);
+	}
+
+	public Exame getExameAtivo(Long idExame) {
+		Exame exame = exameRepositorio.findByIdExameAndStatus(idExame, Status.ATIVO);
+		return exame;
 	}
 
 	@Override
@@ -67,7 +72,7 @@ public class ExameServicoImpl implements ExameServico {
 
 	@Override
 	public boolean removerExame(Long idExame) {
-		Exame exame = getExame(idExame);
+		Exame exame = getExameAtivo(idExame);
 		if (ObjectUtils.isEmpty(exame)) {
 			return false;
 		}
@@ -86,7 +91,6 @@ public class ExameServicoImpl implements ExameServico {
 		if (ObjectUtils.isEmpty(lab)) {
 			throw new LaboratorioNaoEncontradoException(idLaboratorio.getIdLaboratorio());
 		}
-
 		exame.getListaLaboratorios().add(lab);
 		return exameRepositorio.save(exame);
 	}
@@ -100,4 +104,22 @@ public class ExameServicoImpl implements ExameServico {
 		return exame.getListaLaboratorios();
 	}
 
+	@Override
+	public Exame desassociarExameDeLaboratorio(Long idExame, IdLaboratorioDTO idLaboratorio) {
+		Exame exame = getExame(idExame);
+		if (ObjectUtils.isEmpty(exame)) {
+			throw new ExameNaoEncontradoException(idExame);
+		}
+		Laboratorio lab = null;
+		for (Laboratorio l : exame.getListaLaboratorios()) {
+			if (l.getIdLaboratorio().equals(idLaboratorio.getIdLaboratorio())) {
+				lab = l;
+			}
+		}
+		if (ObjectUtils.isEmpty(lab)) {
+			return null;
+		}
+		exame.getListaLaboratorios().remove(lab);
+		return exameRepositorio.save(exame);
+	}
 }

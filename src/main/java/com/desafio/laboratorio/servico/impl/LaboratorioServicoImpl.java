@@ -42,6 +42,11 @@ public class LaboratorioServicoImpl implements LaboratorioServico {
 		return lab.orElse(null);
 	}
 
+	public Laboratorio getLaboratorioAtivo(Long idLaboratorio) {
+		Laboratorio lab = laboratorioRepositorio.findByIdLaboratorioAndStatus(idLaboratorio, Status.ATIVO);
+		return lab;
+	}
+
 	@Override
 	public Laboratorio atualizarLaboratorio(AtualizarLabDTO laboratorioDTO, Long idLaboratorio) {
 		Laboratorio lab = getLaboratorio(idLaboratorio);
@@ -56,7 +61,7 @@ public class LaboratorioServicoImpl implements LaboratorioServico {
 
 	@Override
 	public boolean deletarLaboratorio(Long idLaboratorio) {
-		Laboratorio lab = getLaboratorio(idLaboratorio);
+		Laboratorio lab = getLaboratorioAtivo(idLaboratorio);
 		if (ObjectUtils.isEmpty(lab)) {
 			return false;
 		}
