@@ -34,12 +34,12 @@ O sistema possui os endpoint abaixo:
 }
 ```
 2. **``GET api/v1/exames``**: Requisita todos os exames cadastrados na aplicação.
-*Não possui corpo na requisição*
 ```javascript
+*Não possui corpo na requisição*
 ```
 3. **``GET api/v1/exames/{id}``**: Requisita os dados do exame do id informado na URL.
-*Não possui corpo na requisição*
 ```javascript
+*Não possui corpo na requisição*
 ```
 4. **``PUT api/v1/exames/{id}``**: Requisita a atualização do id informado na URL com os novos dados enviado no corpo da requisição.
 *Exemplo do corpo da requisição para Atualizar o Exame*
@@ -51,8 +51,8 @@ O sistema possui os endpoint abaixo:
 }
 ```
 5. **``DELETE api/v1/exames/{id}``**: Requisita a remoção lógica do exame informado pelo id na URL (Remoção Lógica = Inativar o status do exame).
-*Não possui corpo na requisição*
 ```javascript
+*Não possui corpo na requisição*
 ```
 6. **``POST api/v1/laboratorios``**: Requisita o cadastro do laboratório que é enviado no corpo da requisição.
 *Exemplo do corpo da requisição para Cadastro de Laboratório*
@@ -63,16 +63,17 @@ O sistema possui os endpoint abaixo:
 }
 ```
 7. **``GET api/v1/laboratorios``**: Requisita todos os laborátorios cadastrados na aplicação.
-*Não possui corpo na requisição*
 ```javascript
+*Não possui corpo na requisição*
 ```
 7.1. **``GET api/v1/laboratorios?nome=``**: Requisita todos os laborátorios associados ao nome do exame passado na URL.
-*Não possui corpo na requisição - Para buscar através do nome do exame é necessário passar o paramentro na URL* 
+Para buscar através do nome do exame é necessário passar o paramentro na URL. 
 ```javascript
+*Não possui corpo na requisição*
 ```
 8. **``GET api/v1/laboratorios/{id}``**: Requisita os dados do id do laboratório informado na URL.
-*Não possui corpo na requisição*
 ```javascript
+*Não possui corpo na requisição*
 ```
 9. **``PUT api/v1/laboratorios/{id}``**: Requisita a atualização do id do laboratório informado na URL com os novos dados enviados no corpo da requisição.
 *Exemplo do corpo da requisição para Atualizar o Laboratório*
@@ -84,6 +85,6 @@ O sistema possui os endpoint abaixo:
 }
 ```
 10. **``DELETE api/v1/laboratorios/{id}``**: Requisita a remoção lógica do laboratório informado pelo id na URL (Remoção Lógica = Inativar o status do laboratório).
-*Não possui corpo na requisição*
 ```javascript
+*Não possui corpo na requisição*
 ```
