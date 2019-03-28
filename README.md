@@ -88,3 +88,18 @@ Para buscar através do nome do exame é necessário passar o paramentro na URL.
 ```javascript
 *Não possui corpo na requisição*
 ```
+11. **``POST api/v1/exames/{id}/laboratorios``**: Requisita a associação do id do exame informado na URL com o id do laboratório informado no corpo da requisição.
+*Exemplo do corpo da requisição para Associar um Exame a um Laboratório*
+```javascript
+{
+	"idLaboratorio": 2
+}
+```
+
+12. **``DELETE api/v1/exames/{id}/laboratorios``**: Requisita a desassociação do id do exame informado na URL com o id do laboratório informado no corpo da requisição.
+*Exemplo do corpo da requisição para Desassociar um Exame de um Laboratório*
+```javascript
+{
+	"idLaboratorio": 2
+}
+```
