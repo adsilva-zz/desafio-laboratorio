@@ -22,3 +22,35 @@ O projeto está divido nas seguintes camadas:
 3. Configurar no aplication.properties a conexão do BD
 4. Executar no terminal o comando: ``mvn spring-boot:run``
 5. Chamar os endpoint.
+
+## Como testar 
+O sistema possui os endpoint abaixo: 
+1. **``POST api/v1/exames``**: Requisita o cadastro do exame que é enviado no corpo da requisição.
+*Exemplo do corpo da requisição para Cadastro de Exame*
+```javascript
+{
+	"nome": "Hemograma",
+	"tipo": "ANALISE_CLINICA"
+}
+```
+2. **``GET api/v1/exames``**: Requisita todos os exames cadastrados na aplicação.
+*Não possui corpo na requisição*
+```javascript
+```
+3. **``GET api/v1/exames/{id}``**: Requisita os dados do exame do id informado na URL.
+*Não possui corpo na requisição*
+```javascript
+```
+4. **``PUT api/v1/exames/{id}``**: Requisita a atualização do id informado na URL com os novos dados enviado no corpo da requisição.
+*Exemplo do corpo da requisição para Atualizar o Exame*
+```javascript
+{
+	"nome": "Hemograma",
+	"tipo": "ANALISE_CLINICA",
+	"status": "INATIVO"
+}
+```
+5. **``DELETE api/v1/exames/{id}``**: Requisita a remoção lógica do exame informado pelo id na URL (Remoção Lógica = Inativar o status do exame).
+*Não possui corpo na requisição*
+```javascript
+```
